@@ -70,7 +70,7 @@ app.delete("/beers/:id", (req, res) => {
     // Er grunden til at det ikke bliver slettet at det er hardcoded??
     // prøv at slette noget der er tilføjet, når den app.post er implementeret
     // fra postman { "id": 4, "data": "test4" }
-    // Nået til 21:20 i mosh' rest api
+    
 
     let HTMLTekst = "";
     for (let i = 0; i < beers.length; i++) {
