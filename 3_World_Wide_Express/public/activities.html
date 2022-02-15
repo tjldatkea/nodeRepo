@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Boredapi</title>
+</head>
+
+<body>
+    <h1>Something to do:</h1>
+
+    <div id="activity">
+        <p id="test"></p>
+    </div>
+
+    <script>
+
+        /* task call the API and display it on the page */
+        let HTMLTekst = "";
+
+        fetch("https://www.boredapi.com/api/activity/")
+            .then(res => res.json())
+            .then(res => {
+                console.log(res)
+
+                //const activityParagraph = document.getElementById("activity");
+
+                //activityParagraph.innerText = res.activity;
+
+                HTMLTekst += `You could: ${res.activity}. `;
+
+                HTMLTekst += `It's a ${res.type} activity. `;
+
+                let tekst = (res.participants > 1) ? `with ${res.participants} friend(s). ` : `alone. `;
+
+                HTMLTekst += `That you can do ${tekst}`;
+
+                const activityParagraph = document.getElementById("activity");
+
+                activityParagraph.innerText = HTMLTekst;
+
+            });
+
+
+
+
+        /*
+                fetch("https://www.boredapi.com/api/type/")
+                    .then(res => res.json())
+                    .then(res => {
+                        console.log(res)
+        
+                        HTMLTekst += `It's a ${res.type} activity`;
+        
+                    });
+        
+        
+        */
+
+    </script>
+</body>
+
+</html>
