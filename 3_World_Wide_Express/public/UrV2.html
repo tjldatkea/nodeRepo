@@ -12,8 +12,6 @@
   </div>
 
 
-  <!-- <p> her kan være knapper hvor man kan slå farve og tidszone skift til og fra</p> -->
-
   <script>
     var canvas = document.getElementById("canvas");
     var ctx = canvas.getContext("2d");
@@ -32,18 +30,15 @@
     var timeZone6 = { city: "Dubai", hourOffset: 2 };
     var timeZones = [timeZone0, timeZone1, timeZone2, timeZone6];
     var currentTimeZoneIndex = 0;
-    // prøv at bruge push eller hvad det nu hedder til at tilføje tidszoner til arrayet
 
 
     var colorlist = ["lightgreen", "lightblue", "red", "magenta", "brown", "yellow", "pink"];
     var colorIndex = 0;
 
-    //ctx.save();
     ctx.translate(radius * 0.9, radius * 0.9);
-    //ctx.translate(x, y);
     radius = radius * 0.90
 
-    setInterval(drawClock, 10); // *******************************
+    setInterval(drawClock, 10);
 
     // funktionen flytter urets midte ved at flytte context(ctx) objektets (0,0) position
     function translate(ddxx, ddyy) { // kaldt ddxx og ddyy for at undgå forvirring, da det er parameter variabler
@@ -56,7 +51,6 @@
     }
 
     function changeClockColor() {
-      //colorIndex = (colorIndex + 1) % colorlist.length; // mod antallet af strenge i colorlisten. Med denne linie ændrer farven sig hver gang kanten rammes, men det følger bare den rækkefølge farverne ligger i colorlisten
       let oldColorIndex = colorIndex; // bruges i while løkken til at sikre at bolden får en ny farve hver gang den ramme siderne
       while (colorIndex == oldColorIndex) {
         colorIndex = getRndInteger(0, colorlist.length - 1); // denne linie vælger et tilfældigt tal inden for index start og slut på colorlisten og gemmer dette i colorIndex
@@ -71,24 +65,14 @@
     }
 
     function clearScreen() {
-      //  ctx.clearRect(-2*canvas.width, -2*canvas.height, 2*canvas.width, 2*canvas.height); // hvorfor virker denne ikke??
-      //  ctx.clearRect(-2*canvas.width, -2*canvas.height, 0,0); // hvorfor virker denne ikke??
-
-      //  ctx.save(); // hvorfor er save ikke nødvendig, når jeg bruger translate??? 
-      //  translate(0,0);
-      //  ctx.restore();
-      //  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
       ctx.beginPath();
       ctx.arc(0, 0, 1.1 * radius, 0, 2 * Math.PI);
-      //  ctx.fillStyle = 'black';
       ctx.fillStyle = '#333';
       ctx.fill();
 
     }
 
     function drawClock() {
-      //  ctx.clearRect(-2*canvas.width, -2*canvas.height, 2*canvas.width, 2*canvas.height); // hvorfor virker denne ikke??
       clearScreen();
       drawFace(ctx, radius);
       drawNumbers(ctx, radius);
@@ -96,21 +80,12 @@
       translate(dx, dy);
       totalTranslationX = totalTranslationX + dx;
       totalTranslationY = totalTranslationY + dy;
-      /*  
-      if(totalTranslationX + dx > (canvas.width - radius)  || totalTranslationX + dx < radius) {
-          dx = -dx;
-      }
-      
-      if(totalTranslationY + dy > (canvas.height - radius) || totalTranslationY + dy < radius) {
-          dy = -dy;
-      }
-      */
 
       if (totalTranslationX + dx > (canvas.width - 2 * radius) || totalTranslationX + dx < 0) {
         dx = -dx;
         changeClockColor();
         changeTimeZone();
-      } // bemærk forskellen fra Breakout spillet, her er det 2 gange radius i den første af de to boolske udtryk, da uret allerede starter et stykke inde, så man kan se det hele q
+      }
 
       if (totalTranslationY + dy > (canvas.height - 2 * radius) || totalTranslationY + dy < 0) {
         dy = -dy;
@@ -124,15 +99,11 @@
       var grad;
       ctx.beginPath();
       ctx.arc(0, 0, radius, 0, 2 * Math.PI);
-      //ctx.fillStyle = 'white'; //'lightgreen';
       ctx.fillStyle = colorlist[colorIndex];
       ctx.fill();
       grad = ctx.createRadialGradient(0, 0, radius * 0.95, 0, 0, radius * 1.05);
       grad.addColorStop(0, '#333');
-      //  grad.addColorStop(0,5, colorlist[colorIndex]);
-      //  grad.addColorStop(0,5, 'gray'); // denne linie og den overstående virker overhovedet ikke, men hvorfor???
       grad.addColorStop(0.5, 'white');
-
       grad.addColorStop(1, '#333');
       ctx.strokeStyle = grad;
       ctx.lineWidth = radius * 0.1;
@@ -140,7 +111,6 @@
       ctx.beginPath();
       ctx.arc(0, 0, radius * 0.1, 0, 2 * Math.PI);
       ctx.fillStyle = '#333';
-      //ctx.fillStyle = 'black';
       ctx.fill();
     }
 
@@ -182,10 +152,7 @@
       second = (second * Math.PI / 30);
       drawHand(ctx, second, radius * 0.9, radius * 0.02);
 
-
       makeDigitalClock();
-
-
 
     }
 
@@ -222,14 +189,14 @@
     function digitalCounter(digit) {
       let HTMLTekst = "";
 
-      if (digit !== 1) {
-        HTMLTekst += "<img src=\"digitalDigits/digital_" + digit + ".bmp\" alt=\"" + digit + "\">";
-      }
+      //if (digit !== 1) {
+      HTMLTekst += "<img src=\"digitalDigits/digital_" + digit + ".bmp\" alt=\"" + digit + "\">";
+      /*}
       else {
         HTMLTekst += "<img src=\"legoDigits/lego_" + digit + ".png\" alt=\"" + digit + "\">";
       }
       return HTMLTekst;
-
+*/
     }
 
 
