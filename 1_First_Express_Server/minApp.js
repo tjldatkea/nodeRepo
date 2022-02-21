@@ -44,6 +44,8 @@ app.get("/beers", (req, res) => {
     console.log("/beers");
 });
 
+
+// Husk at her skal bruges parseInt eller Number()
 app.get("/beers/:id", (req, res) => {
     // res.send(req.params.id); // returnerer parameteren fra browseren
 
@@ -52,7 +54,7 @@ app.get("/beers/:id", (req, res) => {
     //let beer = [...beers.filter(x => x.id !== item.id)] // jeg mangler item
 
     //let idFraBruger = req.params.id;
-    let beerIndex = beers.findIndex((element) => (element.id == req.params.id)); // Hvorfor virker det ikke med ===?
+    let beerIndex = beers.findIndex((element) => (element.id == req.params.id)); // Hvorfor virker det ikke med ===? parseInt/Number()
     console.log("beerIndex: " + beerIndex);
 
     HTMLTekst += "beers[" + beerIndex + "].id: " + beers[beerIndex].id + " data: " + beers[beerIndex].data + "<br>";
@@ -66,7 +68,7 @@ app.delete("/beers/:id", (req, res) => {
     // res.send(req.params.id); // returnerer parameteren fra browseren
 
 
-    beers = [...beers.filter(x => x.id !== req.params.id)]
+    beers = [...beers.filter(x => x.id !== req.params.id)]  // mangler parseInt
     // Er grunden til at det ikke bliver slettet at det er hardcoded??
     // prøv at slette noget der er tilføjet, når den app.post er implementeret
     // fra postman { "id": 4, "data": "test4" }

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Image Map test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="ikea.png" usemap="#image_map">
+    <map name="image_map">
+        <area alt="box" title="box" href="test1.html" coords="126,13,182,55" shape="rect">
+        <area alt="bowl" title="bowl" href="test2.html" coords="64,39 76,56 112,57 125,39 93,34 " shape="polygon">
+        <area alt="circle" title="circle" href="test3.html" coords="230,103,11" shape="circle">
+    </map>
+
+    <div id="container"></div>
+    <script>
+
+    </script>
+</body>
+
+</html>

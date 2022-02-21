@@ -11,8 +11,12 @@
     <h1>Something to do:</h1>
 
     <div id="activity">
-        <p id="test"></p>
+
     </div>
+
+    <p id="para"></p>
+    <p id="paraTwo"></p>
+
 
     <script>
 
@@ -30,6 +34,8 @@
 
                 HTMLTekst += `You could: ${res.activity}. `;
 
+                if (res.type === "busywork") { res.type = "boring" }
+
                 HTMLTekst += `It's a ${res.type} activity. `;
 
                 let tekst = (res.participants > 1) ? `with ${res.participants} friend(s). ` : `alone. `;
@@ -45,18 +51,73 @@
 
 
 
-        /*
-                fetch("https://www.boredapi.com/api/type/")
-                    .then(res => res.json())
-                    .then(res => {
-                        console.log(res)
-        
-                        HTMLTekst += `It's a ${res.type} activity`;
-        
+        function getRndInteger(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+
+        let randNumb = getRndInteger(1, 60); // pga 60 planeter i api
+        let shipNumberList = [2, 3, 5, 9, 10, 11, 12, 13, 15, 17];
+        let randNumbTwo = getRndInteger(1, shipNumberList.length); // -1???
+        let shipNumber = shipNumberList[randNumbTwo];
+        let time = new Date();
+
+        // tag en tur til en planet fra star wars
+        fetch(`https://swapi.dev/api/planets/${randNumb}/`)
+            .then(res => res.json())
+            .then(res => {
+                console.log(res)
+
+                let HTMLTekst = "";
+
+                HTMLTekst += `Or you could take a trip to ${res.name} `;
+
+                // i et skib fra star wars
+                fetch(`https://swapi.dev/api/starships/${shipNumber}/`)
+                    .then(res2 => res2.json())
+                    .then(res2 => {
+                        console.log(res2)
+
+                        console.log(HTMLTekst);
+                        HTMLTekst += `in your ${res2.name}. `;
+                        console.log(HTMLTekst);
+
+                        // perhaps you'll meet:
+                        // mød evt en af planettens indbyggere:
+                        console.log("residents[0]:" + res.residents[0]);
+                        console.log("residents.length:" + res.residents.length);
+
+                        // NÅET HERTIL skal rette det med people/0/ fejlen
+
+                        const tripTwoParagraph = document.getElementById("paraTwo");
+
+                        if (res.residents.length > 0) {
+                            // vælg en tilfældig indbyggers tal fra listen
+                            let randNumbThree = getRndInteger(0, shipNumberList.length - 1);
+                            fetch(`https://swapi.dev/api/people/${randNumbThree}/`)
+                                .then(res3 => res3.json())
+                                .then(res3 => {
+
+                                    HTMLTekst += `Perhaps you'll meet ${res3.name}`;
+
+
+
+                                    tripTwoParagraph.innerText = HTMLTekst;
+                                    // Jeg er nød til at skrive til <p> her, da jeg ikke får den sidste del med inden det udskrives i den ydre fetch
+                                });
+                        }
+                        else {
+                            tripTwoParagraph.innerText = HTMLTekst;
+                        }
+
                     });
-        
-        
-        */
+
+                //const tripParagraph = document.getElementById("para");
+
+                //tripParagraph.innerText = HTMLTekst;
+            });
+
+
+
 
     </script>
 </body>
