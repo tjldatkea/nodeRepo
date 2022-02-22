@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title id="title"></title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+
+<body onload="addTextToHTML()">
+    <div id="container"></div>
+
+
+
+    <script>
+        let data = { "title": "Git kommandoer", "text": ["linie1", "linie2"] }
+
+        function addTextToHTML() {
+
+            document.getElementById("title").innerHTML = data.title;
+
+            let HTMLTekst = "";
+
+            data.text.forEach(element => {
+                HTMLTekst += "<p>" + element + "</p><br>";
+            });
+
+            /*
+            HTMLTekst += `
+            Git kommandoer:
+
+git add -A  // add'er alle filer til ens repository (man stager filerne, dette kan gøres flere gange. add og stage er kun lokalt)
+
+git status
+
+git commit -m "nsnkdcskcd" // commit er at pushe repo på github
+// -m er med en besked
+            `
+*/
+
+            const containerDiv = document.getElementById("container");
+
+            // Hvorfor virker det her ikke???
+            //containerDiv.innerText = HTMLTekst;
+
+
+            let textDiv = document.createElement("DIV");
+            textDiv.setAttribute("id", "textId");
+            containerDiv.appendChild(textDiv)
+            textDiv.innerHTML = HTMLTekst;
+
+        }
+
+    </script>
+</body>
+
+</html>

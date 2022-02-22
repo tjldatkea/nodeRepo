@@ -189,14 +189,20 @@
     function digitalCounter(digit) {
       let HTMLTekst = "";
 
-      //if (digit !== 1) {
+
       HTMLTekst += "<img src=\"digitalDigits/digital_" + digit + ".bmp\" alt=\"" + digit + "\">";
-      /*}
-      else {
-        HTMLTekst += "<img src=\"legoDigits/lego_" + digit + ".png\" alt=\"" + digit + "\">";
-      }
+
+
+
+      //HTMLTekst += "<img src=\"C:\\Users\\Bruger\\Desktop\\NodeJS\\digitalDigits\\digital_" + digit + ".bmp\" alt=\"" + digit + "\">";
+      //HTMLTekst += "<img src=\"C:/Users/Bruger/Desktop/NodeJS/digitalDigits/digital_" + digit + ".bmp\" alt=\"" + digit + "\">";
+      // Hvorfor virker det ikke når billederne ligger et andet sted????
+      // Den skriver "not allowed to load local ressource"
+
+      //HTMLTekst += "<img src=\"legoDigits/lego_" + digit + ".png\" alt=\"" + digit + "\">";
+
       return HTMLTekst;
-*/
+
     }
 
 
