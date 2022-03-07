@@ -32,7 +32,6 @@ function makePageWithAllTopics(valuesList) {
     let samletHTMLTekst = ""
     valuesList.forEach(element => {
         samletHTMLTekst += makeDataToHTML(element);
-        //console.log("samletHTMLTekst: " + samletHTMLTekst)
     });
     return samletHTMLTekst;
 }
@@ -95,8 +94,6 @@ secondPageForTheUser = secondPageForTheUser.replace("%%PLACEHOLDER_NAVBAR%%", na
 
 function makeDataToHTML(dataParam) {
 
-    //document.getElementById("title").innerHTML = dataParam.title;
-
     let HTMLTekst = "";
 
     HTMLTekst += "<h1 id=\"" + dataParam.id + "\">" + dataParam.title + "</h2>"
@@ -146,7 +143,6 @@ function makeNavBar(valuesList) {
 
     return HTMLTekst;
 
-    //document.getElementById("navBarDiv").innerHTML = HTMLTekst;
 
 
 
@@ -167,8 +163,6 @@ app.get("/", (req, res) => {
 app.get("/second", (req, res) => {
     res.send(`<h1>Welcome to NodeJSWiki</h1>
     <a href="git.html">git kommandoer<a/>`);
-    // <a href="UrV2.html">clock<a/>
-    // <p>test</p>
     // <p>${true}</p>
 });
 
@@ -187,9 +181,6 @@ app.post("/", (req, res) => {
     //const changedData = req.query.data;
     //console.log("data: " + changedData);
 
-    //beerToCreate.id == ++CURRENT_ID; // prefix, så variablen får den rette værdi inden den gemmes som elementets id
-    //beers.push(beerToCreate);
-    //res.send({ data: beerToCreate });
     res.send(secondPageForTheUser); // siden skal rettes med de nye data ***
 });
 
