@@ -4,12 +4,13 @@
 <head>
     <meta charset="utf-8" />
     <title id="title"></title>
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #f0f0f0;
+            margin: 10px;
+            padding: 10px;
+            /*overflow: hidden;*/
+            background-color: #b9b8b8;
         }
     </style>
 </head>
@@ -20,7 +21,18 @@
 
 
     <script>
-        let data = { "title": "Git kommandoer", "text": ["linie1", "linie2"] }
+        //let data = { "title": "Git kommandoer", "text": ["linie1", "linie2"] }
+
+
+        // Kan måske også bare indlæses fra tekstdokument som JSON
+        let data = {
+            "title": "Git kommandoer",
+            "text": [
+                "git add -A  // add'er alle filer til ens repository (man stager filerne, dette kan gøres flere gange. add og stage er kun lokalt)",
+                "git status",
+                "git commit -m \"nsnkdcskcd\" // commit er at pushe repo på github // -m er med en besked"
+            ]
+        }
 
         function addTextToHTML() {
 
@@ -28,28 +40,21 @@
 
             let HTMLTekst = "";
 
+            HTMLTekst += "<h1>" + data.title + "</h2><br>"
+
             data.text.forEach(element => {
                 HTMLTekst += "<p>" + element + "</p><br>";
             });
-
-            /*
-            HTMLTekst += `
-            Git kommandoer:
-
-git add -A  // add'er alle filer til ens repository (man stager filerne, dette kan gøres flere gange. add og stage er kun lokalt)
-
-git status
-
-git commit -m "nsnkdcskcd" // commit er at pushe repo på github
-// -m er med en besked
-            `
-*/
+            // Idéer:
+            // I funktionen ovenover kan måske tilføje en edit knap ud for hver linje
+            // og herefter kan tilføjes en add knap
 
             const containerDiv = document.getElementById("container");
 
-            // Hvorfor virker det her ikke???
+            // Hvorfor virker det her ikke??? fordi at jeg bruger innerText i stedet for innerHTML. Jeg må gerne bruge innerHTML, når jeg bygger en HTML op, men når jeg bare skal sætte data ind, så skal jeg bruge innerText for at undgå crosssite scripting
             //containerDiv.innerText = HTMLTekst;
 
+            //containerDiv.innerHTML = HTMLTekst;  // Nu virker det med innerHTML
 
             let textDiv = document.createElement("DIV");
             textDiv.setAttribute("id", "textId");

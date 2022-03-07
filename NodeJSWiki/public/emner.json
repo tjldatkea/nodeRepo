@@ -1,0 +1,185 @@
+{
+    "allTopics": {
+        "nodeJS": {
+            "id": "nodeJS",
+            "title": "NodeJS",
+            "text": [
+                "NodeJS er et runtime environment for Javascript, der gør det muligt at køre Javascript udenfor en browser. På denne måde kan man f.eks. interagere med filsystemet, noget man ikke kan fra browseren aht sikkerheden. Det gør det også muligt at have Javascript både hos klienten og på serveren, så man kan bruge det samme hold udviklere til både frontend og backend."
+            ]
+        },
+        "opStart": {
+            "id": "opStart",
+            "title": "Opstart af nyt projekt",
+            "text": [
+                "Ved opstart af nyt projekt:",
+                "Kan man skrive npm init og svare på hvad der spørges efter",
+                "For hurtigere opstart kan skrive npm init -y, der svarer ja til det hele",
+                "npm init opretter package.json filen",
+                "Herefter installeres express med: npm i express",
+                "express installeres i node_modules mappen",
+                "Man skal skrive følgende i app.js:",
+                "const express = require('express');",
+                "const app = express();",
+                "app.use(express.static(__dirname + '/public')); // security measure: giver clienten adgang til filerne i public",
+                "app.use(express.json()); // bruges for at kunne parse body'en som json",
+                "app.get('/', (req, res) => {",
+                "&emsp;   res.send({});",
+                "});",
+                "app.listen(8080, () => { // the callback function",
+                "&emsp;    console.log('The server is running', 8080);",
+                "});",
+                "Der skal som absolut minimum være {} i ens package.json fil inden man kører npm install i terminalen(mens den er i den rette mappe)(man kan huske det ved at der er {} i logoet for filen)",
+                "Alternativ fremgangsmåde:",
+                "Så kan man oprette og skrive følgende i sin package.json fil: ",
+                "{",
+                "&emsp;    'dependencies': {",
+                "&emsp;&emsp;        'express': '4.17.2'",
+                "&emsp;    }",
+                "}",
+                "og herefter skriver npm install i den rette mappe i terminalen, så installerer npm alle de nødvendige filer(node modules) for at gøre projektet klar",
+                "Man pusher ikke node modules til github(da det er unødvendigt, da man bare kan køre npm install, når man har hentet koden fra github), kan evt undgås ved at bruge gitignore.",
+                "Herefter opretter man en fil og kalder den app.js. Så er den lettere at finde for andre der bruger express frameworket"
+            ]
+        },
+        "git": {
+            "id": "git",
+            "title": "Git kommandoer",
+            "text": [
+                "git add -A  // add'er alle filer til ens repository (man stager filerne, dette kan gøres flere gange. add og stage er kun lokalt)",
+                "git status",
+                "git commit -m \"besked tekst\" // commit er at pushe repo på github // -m er med en besked"
+            ]
+        },
+        "powerShell": {
+            "id": "powerShell",
+            "title": "Kommandoer til powerShell",
+            "text": [
+                "dir og ls viser mappens indhold",
+                "mkdir test // lav en mappe med navnet test",
+                "cls tømmer skærmens indhold",
+                "PS C:\\Users\\Bruger\\Documents\\GitHub\\nodeRepo\\test> $home    // viser home directory: C:\\Users\\Bruger",
+                "PS C:\\Users\\Bruger\\Documents\\GitHub\\nodeRepo\\test> cd ../../",
+                "PS C:\\Users\\Bruger\\Documents\\GitHub>",
+                "Pointen med at bruge shell og kommandoprompt er fordi servere ikke har GUI'er"
+            ]
+        },
+        "variableDecl": {
+            "id": "variableDecl",
+            "title": "Variabel erklæringer",
+            "text": [
+                "Grunden til at man ikke skal bruge var, når man erklærer variabler er at selv man erklærer en variabel lokalt med var, så bliver variablen stadig global, derfor skal man undgå at bruge var.",
+                "Hvis man slet ikke bruger hverken var eller let men bare skriver variabel navnet så bliver variablen total global og 'leaker' ud af dennes scope",
+                "Ved use strict kan man ikke erklære variabler uden var eller let. Det er ikke nødvendigt at bruge use strict, da man bare skal undgå at erklære variabler uden let eller const.",
+                "Så brug altid let eller const og vi bør altid bruge const medmindre der er en god grund til at bruge let"
+            ]
+        },
+        "parsing": {
+            "id": "parsing",
+            "title": "Parsing",
+            "text": [
+                "Forskellen mellem parseInt() og Number()",
+                "const toParse = '123ab3';",
+                "parseInt(toParse); // giver '123'",
+                "Number(toParse); // giver NaN not a number",
+                "Brug String() til at parse til en streng"
+            ]
+        },
+        "nodemon": {
+            "id": "nodemon",
+            "title": "Nodemon",
+            "text": [
+                "install nodemon: npm i -g nodemon",
+                "så skal man ikke køre programmet igen og igen. js filen kører med: nodemon filnavn.js",
+                "For at resette server skrives rs",
+                "Man kan lave en nodemon config fil, hvor man skriver hvilke extensions den skal lytte til.",
+                "Eksempel: fil: nodemon.js, indhold:",
+                "{'ext': 'js, json, mjs, html'}",
+                "nodemon er kun til development og ikke til production(da variabler bliver slettet, når den foretager hot reload)",
+                "nodemon kan også bruges til Python, selvom det vist ikke er helt kosher :)"
+            ]
+        },
+        "genvejstaster": {
+            "id": "genvejstaster",
+            "title": "Genvejstaster",
+            "text": [
+                "Multiline outcomment i vscode: ctrl + k + c",
+                "Brug tab til at få resten af filnavnet som man er ved at skrive i powershell eller kommandoprompten. På den måde sikrer man sig også at filen rent faktisk er der",
+                "Man kan afbryde terminalen med ctrl C"
+            ]
+        },
+        "ssr": {
+            "id": "ssr",
+            "title": "Server side rendering",
+            "text": [
+                "Når man laver HTML siden på serveren, så kan man sammensætte HTML siden af forskellige fragmenter eller dele, hvor de enkelte dele kan skiftes ud, så man kan genbruge det meste, så som f.eks. en navigation bar på alle siderne og så skifte den del ud hvor der skal være noget andet på.",
+                "Man kan også bruge placeholders til at udskifte dele af en HTML skabalon inden den sendes til brugeren",
+                "F.eks. kan man skrive %%TITLE_PLACEHOLDER%% i ens HTML's title og så skrive HTMLTekststrengensNavn.replace(%%TITLE_PLACEHOLDER%%,'ny title') i app.js og på den måde give de enkelte HTML sider deres egne titles",
+                "Server side rendering er vist hurtigere for kunden der skal ind på siden.(load af data tager vist lige lang tid om det foregår hos clienten eller serveren)",
+                "Til sammenligning: I react har du hele den virtuelle dom der skal skabes og en webcrawler kan møde en blank side, derfor kan man bruge server side rendering til at lave hele siden på serveren og så sende den, så webcrawleren(fra søgemaskinen) møder den færdige side, så det hjælper på seo(search engine optimization)"
+            ]
+        },
+        "callback": {
+            "id": "callback",
+            "title": "Callback funktioner",
+            "text": [
+                "Når man bruger en funktion som en parameter for en anden funktion, så hedder det en callback funktion.",
+                "Kode eksempel på callback funktion:",
+                "function doActionWithSomeone(anyFunctionReference/* <-- det her er callback funktionen */, name) {",
+                "&emsp;  anyFunctionReference(name);",
+                "}"
+            ]
+        },
+        "postman": {
+            "id": "postman",
+            "title": "Postman",
+            "text": [
+                "Postman kan bruges til at teste ens side, mens den er under udvikling",
+                "I Postman app'en skal man bruge/vælge http request, evt post, body, raw og JSON i dropdown menuen",
+                "Hvis man har følgende i sin app.js:",
+                "%code%app.post('/mirror', (req, res) => {",
+                "%code%&emsp;    res.send(req.body);",
+                "%code%});",
+                "Ved post til localhost:8080/mirror  med følgende data, så svarer den det samme tilbage",
+                "%code%{",
+                "%code%&emsp;    'testdata': 'test'",
+                "%code%}"
+            ]
+        },
+        "strongEqualityCheck": {
+            "id": "strongEqualityCheck",
+            "title": "Strong equality check",
+            "text": [
+                "Brug strong equality check(===), da (==) kan give mange problemer med type coercion i JS",
+                "hard equality: 2 === '2'; // giver false",
+                "derfor: 2 === Number('2'); // giver true"
+            ]
+        },
+        "pathAndQuery": {
+            "id": "pathAndQuery",
+            "title": "Path variable/query string",
+            "text": [
+                "Hvordan man kan sende data med en GET request:",
+                "path variable        url/1  // husk dog kolon i koden",
+                "query string         url/?key=value&key2=value2",
+                "Eksempler: ",
+                "Få variablen name ind som path variable:",
+                "%code%app.get('/clientgreeting/:name', (req, res) => {",
+                "%code%&emsp; res.send({ greeting: `Hello there, ${req.params.name}.` });",
+                "%code%});",
+                "Query string:",
+                "// url: kangaroofacts?cankick=true   <-- query string",
+                "%code% app.get('/kangaroofacts', (req, res) => {",
+                "%code%%indent%     console.log(req.query.cankick); // true",
+                "%code%%indent%     res.send(req.query); // {'cankick': 'true'}",
+                "%code% });"
+            ]
+        },
+        "eksempel": {
+            "id": "eksempel",
+            "title": "Eksempel",
+            "text": [
+                "Klik på mig for at se noget under udvikling"
+            ]
+        }
+    }
+}
